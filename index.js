@@ -11,9 +11,8 @@ const { User } = require("./models/User");
 const e = require("express");
 
 const app = express();
-const MONGO_URI =
-  "mongodb+srv://dbAdmin:Hello23World@anchor-cluster.lpzmp.mongodb.net/DevDB?retryWrites=true&w=majority";
-const jwtKey = "Hogwards";
+const MONGO_URI = process.env.MONGO_DB_URI;
+const jwtKey = process.env.SECRET_KEY;
 const jwtExpiry = 300;
 
 const port = process.env.PORT || 3000;
