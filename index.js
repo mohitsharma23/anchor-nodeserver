@@ -8,7 +8,6 @@ const cheerio = require("cheerio");
 const convert = require("xml-js");
 
 const { User } = require("./models/User");
-const e = require("express");
 
 const app = express();
 const MONGO_URI = process.env.MONGO_DB_URI;
@@ -36,6 +35,10 @@ const generateToken = (email) => {
 
   return jwtToken;
 };
+
+app.get("/keepalive", (req, res) => {
+  return res.send("Alive");
+});
 
 app.post("/api/user/signup", (req, res) => {
   User().ifUserExists(req.body.email, (err, ifExist) => {
