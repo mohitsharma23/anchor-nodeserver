@@ -117,7 +117,9 @@ app.post("/api/user/addanchor", (req, res) => {
             ($(ele).attr("type") === "application/atom+xml" ||
               $(ele).attr("type") === "application/rss+xml" ||
               ($(ele).attr("href") !== undefined &&
-                $(ele).attr("href").includes("feed")))
+                $(ele)
+                  .attr("href")
+                  .match(/\bfeed\b/gi)))
           ) {
             let link = $(ele).attr("href");
             if (link !== null) {
