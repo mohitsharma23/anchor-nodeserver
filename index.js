@@ -12,7 +12,7 @@ const { User } = require("./models/User");
 const app = express();
 const MONGO_URI = process.env.MONGO_DB_URI;
 const jwtKey = process.env.SECRET_KEY;
-const jwtExpiry = 300;
+const jwtExpiry = "7d";
 
 const port = process.env.PORT || 3000;
 
