@@ -10,10 +10,8 @@ const convert = require("xml-js");
 const { User } = require("./models/User");
 
 const app = express();
-// const MONGO_URI = process.env.MONGO_DB_URI;
-// const jwtKey = process.env.SECRET_KEY;
-const MONGO_URI = "mongodb://localhost:27017/TestDB";
-const jwtKey = "Hogwards";
+const MONGO_URI = process.env.MONGO_DB_URI;
+const jwtKey = process.env.SECRET_KEY;
 const jwtExpiry = "7d";
 
 const port = process.env.PORT || 3000;
