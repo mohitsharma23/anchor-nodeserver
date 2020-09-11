@@ -10,8 +10,10 @@ const convert = require("xml-js");
 const { User } = require("./models/User");
 
 const app = express();
-const MONGO_URI = process.env.MONGO_DB_URI;
-const jwtKey = process.env.SECRET_KEY;
+// const MONGO_URI = process.env.MONGO_DB_URI;
+// const jwtKey = process.env.SECRET_KEY;
+const MONGO_URI = "mongodb://localhost:27017/TestDB";
+const jwtKey = "Hogwards";
 const jwtExpiry = "7d";
 
 const port = process.env.PORT || 3000;
@@ -99,6 +101,7 @@ app.post("/api/user/verifyUser", (req, res) => {
 app.post("/api/user/addanchor", (req, res) => {
   const URL = req.body.url;
   const email = req.body.email;
+  let flag = 0;
   const headers = {
     accept: "*/*",
     "content-type": "application/json",
@@ -156,13 +159,16 @@ app.post("/api/user/addanchor", (req, res) => {
                   console.log(err);
                   return res.status(400).json({ message: "Error" });
                 });
-            } else {
-              res.status(400).json({
-                message: "No feed is given.",
-              });
             }
+          } else {
+            flag = 1;
           }
         });
+        if (flag == 1 && feedLink === "") {
+          res.status(400).json({
+            message: "No feed is given.",
+          });
+        }
       })
       .catch((err) => {
         res.status(400).json({
